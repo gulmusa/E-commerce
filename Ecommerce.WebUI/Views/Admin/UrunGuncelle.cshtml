@@ -1,0 +1,114 @@
+﻿@model Ecommerce.WebUI.Models.Urun
+
+@{
+    ViewBag.Title = "UrunGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+} 
+
+<div class="col-md-10">
+    <br /><br /><br />
+    <h2>Ürün Bilgilerini Güncelle</h2>
+
+    @using (Html.BeginForm("UrunGuncelle","Admin",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div style="float:right;margin-bottom:10px;" class="btn btn-danger btn-sm">
+            <a href="/Admin/Urunler" style="color:white;"><span class="glyphicon glyphicon-backward"></span> Geri Dön</a>
+        </div>
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id) 
+
+        <div class="form-group"> 
+            <span style="margin-left:120px;color:red;">Eski Adı :</span>
+            <input type="text" disabled   value="@Model.Adi"  style="margin:5px;" /> 
+            <br />
+            @Html.LabelFor(model => model.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" placeholder="Ürünün Yeni Adını Giriniz" name="Adi" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Adi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:85px;color:red;">Eski Açıklama :</span>
+            <input type="text" disabled   value="@Model.Aciklama" style="margin:5px;" />
+            <br />
+            @Html.LabelFor(model => model.Aciklama, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea style="min-height:120px;min-width:770px;" placeholder="Yeni Açıklamayı Buraya Girebilirsiniz"></textarea>
+                @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:75px;color:red;">Eski Alış Fiyatı :</span>
+            <input type="text" disabled value="@Model.AlisFiyat" style="margin:5px;" />
+            <br />
+            @Html.LabelFor(model => model.AlisFiyat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" name="@Model.AlisFiyat" value="" placeholder="Yeni Alış Fiyatı" />
+                @Html.ValidationMessageFor(model => model.AlisFiyat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span style="margin-left:65px;color:red;">Eski Satış Fiyatı :</span>
+            <input type="text" disabled value="@Model.SatisFiyat" style="margin:5px;" />
+            <br />
+            @Html.LabelFor(model => model.SatisFiyat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" name="@Model.SatisFiyat" value="" placeholder="Yeni Satış Fiyatı" />
+                @Html.ValidationMessageFor(model => model.SatisFiyat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.EklenmeTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EklenmeTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EklenmeTarihi, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.SonKullanmaTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SonKullanmaTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SonKullanmaTarihi, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Kategori :</label>
+            <div class="col-lg-10">
+                <select class="form-control m-bot15" name="KategoriID">
+                    @foreach (var kategori in ViewBag.Kategoriler)
+                {
+                    <option value="@kategori.Id">@kategori.Adi</option>
+            }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Marka :</label>
+            <div class="col-lg-10">
+                <select class="form-control m-bot15" name="KategoriID">
+                    @foreach (var marka in ViewBag.Markalar)
+                {
+                    <option value="@marka.Id">@marka.Adi</option>
+            }
+                </select>
+            </div>
+            <div class="form-group" style="float:right; margin-right:25px;">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Kaydet" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

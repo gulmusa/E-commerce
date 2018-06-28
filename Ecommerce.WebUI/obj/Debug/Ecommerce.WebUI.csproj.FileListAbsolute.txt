@@ -1,0 +1,7 @@
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\bin\Ecommerce.WebUI.dll.config
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\bin\Ecommerce.WebUI.dll
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\bin\Ecommerce.WebUI.pdb
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\obj\Debug\Ecommerce.WebUI.csproj.CoreCompileInputs.cache
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\obj\Debug\Ecommerce.WebUI.dll
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\obj\Debug\Ecommerce.WebUI.pdb
+C:\Users\gulmu\source\repos\E-commerce\Ecommerce.WebUI\obj\Debug\Ecommerce.WebUI.csprojResolveAssemblyReference.cache

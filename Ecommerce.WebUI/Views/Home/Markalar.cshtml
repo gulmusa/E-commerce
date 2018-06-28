@@ -1,0 +1,34 @@
+﻿
+@model IEnumerable<Ecommerce.WebUI.Models.Marka>
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Markalar</h2>
+                </div>
+            </div>
+            <!-- section title -->
+            <!-- Product Single -->
+            @foreach (var mrk in Model)
+            {
+                <div class="col-md-2 col-xs-6">
+                    <div class="product product-single">
+                        <div class="product-body">
+                            <h2 class="product-name"><a href="#">@mrk.Adi</a></h2>
+                        </div>
+                        <div class="product-thumb">
+                            <img src="@mrk.Resim.OrtaYol" alt="">
+                        </div>
+
+                    </div>
+                </div>
+            }  
+            <!-- /Product Single --> 
+        </div>
+    </div>
+    <!-- /container -->
+</div>

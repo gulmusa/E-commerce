@@ -1,0 +1,114 @@
+﻿@model Ecommerce.WebUI.App_Classes.Sepet
+
+<script src="~/Content/PortalTemplate/js/jquery.min.js"></script>
+
+<script> 
+    $(document).ready(function myfunction() {
+
+        $(".urunSil").click(function urunSil() { 
+            var uId = $(this).attr("name");
+            $.ajax({ 
+                type: "GET",
+                url: "/Home/SepetUrunAdetDusur",
+                data: { id: uId },
+                success: function myfunction() {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/MiniSepetWidget",
+                        success: function myfunction(veri) { 
+                            $(".dropdown-toggle").html('');
+                            $(".dropdown-toggle").html(veri); 
+                        } 
+                    }); 
+                },
+                error: function myfunction() {
+                    alert("Error");
+                } 
+            });  
+        }) 
+    }) 
+</script> 
+<li class="header-cart dropdown default-dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <div class="header-btns-icon">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="qty"></span>
+        </div>
+        <strong>Sepetim :</strong>
+        <br>
+        <span>
+            @if (Model != null)
+            {
+                @Model.ToplamTutar.ToString("C2")
+            }
+            else
+            {
+                <span>0₺</span>
+            }
+        </span>
+    </a>
+    <div class="custom-menu">
+        <div id="shopping-cart">
+            <div class="shopping-cart-list">
+
+                @if (Model != null)
+                {
+                    <span>Sepette Toplam @Model.Urunler.Sum(x => x.Adet) Adet Ürün Bulunmaktadır.</span>
+                }
+                else
+                {
+                    <span>Sepette Toplam 0 Adet Ürün Bulunmaktadır.</span>
+                }
+
+                @if (Model != null)
+                {
+
+                    foreach (var item in Model.Urunler)
+                    {
+                        <div class="product product-widget"> 
+                            <div class="product-thumb">
+                                @if (item.Urun.Resim != null)
+                                {
+                                    <img src="@item.Urun.Resim.FirstOrDefault(x=>x.Varsayilan==true).OrtaYol" alt="">
+                                } 
+                            </div>
+                            <div class="product-body">
+                                <h3 class="product-price">
+                                    @item.Tutar.ToString("C2")<span class="qty">
+
+                                        @if (Model != null)
+                                        {
+                                            <span>Sepette Toplam @Model.Urunler.Sum(x => x.Adet) Adet Ürün Bulunmaktadır.</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Sepette Toplam 0 Adet Ürün Bulunmaktadır.</span>
+                                        }
+                                    </span>
+                                </h3>
+                                <h2 class="product-name">
+                                    <a href="/Content/PortalTemplate/#">
+                                        @if (Model != null)
+                                        {
+                                            <a href="/Home/UrunDetay/@item.Urun.Adi"></a>
+                                            <span>@item.Urun.Adi</span>
+                                        }
+                                    </a>
+                                    <p>Adet: @item.Adet</p>
+                                    <p>Tutar: @item.Tutar.ToString("C2")</p>
+                                </h2>
+                            </div>
+                            <a  class="urunSil" name="@item.Urun.Id"><i class="fa fa-trash"></i></a>
+                        </div>
+                    } 
+                }
+            </div>
+            <div class="shopping-cart-btns">
+                <button class="main-btn">View Cart</button>
+                <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+            </div>
+        </div>
+    </div>
+</li>
+
